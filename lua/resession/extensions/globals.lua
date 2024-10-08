@@ -7,9 +7,9 @@ M.on_save() = function()
   return "lua require('barbar.state').restore_buffers " .. vim.inspect(buffers, {newline = ' ', indent = ''})
 end
 
+
 M.on_post_load = function(data)
-  local restore_cmd = data
-  if restore_cmd then command(restore_cmd) end
+  if data then vim.api.nvim_command(data) end
   render.update(true)
 end
 
